@@ -109,7 +109,5 @@ $conn->close();
             <div class="col-12"></div>
         </div>
     </div>
-
-    <script src="login.js"></script>
 </body>
 </html>
