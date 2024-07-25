@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Asegúrate de que 'cont' es el nombre correcto de la columna de la contraseña
         if ($inputPassword === $row['cont']) {
             $_SESSION['nombre_usuario'] = $row['name'];
-            header("Location: http://localhost:8031/Atletas/HTML/InsAt.html");
+            header("Location: ../HTML/InsAt.html");
             exit();
         } else {
-            echo "<script>alert('Contraseña o usuario incorrecto');</script>";
-            header("Location: http://localhost:8031/Atletas/HTML/login.html? error=Contraseña incorrecta");
+            
+            header("Location: ../HTML/InsAt.html");
             
             exit();
         }
