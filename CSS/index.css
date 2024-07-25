@@ -1,9 +1,9 @@
-body{
-    background-color: whitesmoke;
+body {
+  background-color: whitesmoke;
 }
 
-.container{
-    background-color: #024873;
-    height: 80px;
-    width: 100%;
+.container-fluid {
+  background-color: #024873;
+  height: 80px;
+  width: 100%;
 }
