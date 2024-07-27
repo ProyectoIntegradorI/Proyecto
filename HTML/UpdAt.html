@@ -11,8 +11,17 @@
 <body>
     <div class="container mt-3">
         <img src="../img/headerimage.png" alt="Encabezado" class="header-image">
-        <h1 class="mt-3 mb-4">Agregar Nuevo Atleta</h1>
-        <form action="../PHP/insertDep.php" method="POST">
+        <h1 class="mt-3 mb-4">Actualizar Atleta</h1>
+       
+  
+        <form action="../PHP/modif.php" method="POST">
+            <div class="mb-3">
+                <label for="deportistas" class="form-label">Seleccionar Deportista:</label>
+                <select id="deportista" name="userId">
+                    <?php include '../PHP/filtrar.php'; ?>
+                    
+                </select>
+            </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="userId" class="form-label">Cedula:</label>
@@ -36,11 +45,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="lateralidad" class="form-label">Lateralidad:</label>
-                    <select class="form-control" id="lateralidad" name="lateralidad" required>
-                        <option value="">Seleccionar</option>
-                        <option value="izquierda">Izquierda</option>
-                        <option value="derecha">Derecha</option>
-                    </select>
+                    <input type="text" class="form-control" id="lateralidad" name="lateralidad" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="enfermedades" class="form-label">Enfermedades:</label>
@@ -48,12 +53,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="sexo" class="form-label">Sexo:</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
-                        <option value="">Seleccionar</option>
-                        <option value="femenino">F</option>
-                        <option value="masculino">M</option>
-                        <option value="otro">O</option>
-                    </select>
+                    <input type="text" class="form-control" id="sexo" name="sexo" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="edad" class="form-label">Edad:</label>
@@ -69,8 +69,10 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Agregar Atleta</button>
-            <a href="UpdAt.html">Actualizar</a>
+           
         </form>
     </div>
+  
+  
 </body>
 </html>
