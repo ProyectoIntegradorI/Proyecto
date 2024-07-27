@@ -19,9 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputUsername = mysqli_real_escape_string($conn, $_POST['username']);
     $inputPassword = mysqli_real_escape_string($conn, $_POST['password']);
 
-    
-
-    // Preparar y ejecutar consulta
+    //  consulta
     $query = $conn->prepare("SELECT * FROM usuarios WHERE name = ?");
     $query->bind_param("s", $inputUsername);
     $query->execute();
@@ -30,24 +28,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se encontraron resultados
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        
+        // Verificar la contraseña
         // Asegúrate de que 'cont' es el nombre correcto de la columna de la contraseña
         if ($inputPassword === $row['cont']) {
+
             $_SESSION['nombre_usuario'] = $row['name'];
             header("Location: ../HTML/InsAt.html");
             exit();
         } else {
-            
-            header("Location: ../HTML/InsAt.html");
-            
+          
+            echo "<script>alert('Usuario o Contraseña incorrecta');</script>";
+            header("Location: ../HTML/login.html?error=Contraseña incorrecta");
             exit();
         }
     } else {
-        echo "<script>alert('Contraseña o usuario incorrecto');</script>";
-        header("Location:  http://localhost:8031/Atletas/HTML/login.html?error=Usuario no encontrado");
         
+        echo "<script>alert('Usuario o Contraseña incorrecta');</script>";
+        header("Location: ../HTML/login.html?error=Usuario no encontrado");
         exit();
     }
-    
 
     $query->close();
 }
