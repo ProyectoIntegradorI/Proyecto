@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #024873;
+    color: #fff;
+    padding: 20px 5;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 3px; 
+    position: relative; /*imagen absolutamente dentro del header */ 
+  }
+  
+  .header-content {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .header-content img {
+    margin: 0 10px;
+
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #sidebarMenu {
+    width: 250px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 20px;
+    box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  #sidebarMenu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #sidebarMenu ul li {
+    margin: 20px 0;
+  }
+  
+  #sidebarMenu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  #sidebarMenu ul li a:hover {
+    color: #f2b705;
+  }
+  
+  main {
+    margin-left: 0;
+    padding: 20px;
+    flex: 1;
+  }
+  
+  .profile-search {
+    margin-bottom: 20px;
+  }
+  
+  .profile-search h2 {
+    margin-bottom: 10px;
+  }
+  
+  .profile-search input {
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #7e6e55; /* Cambia el color del borde a un azul claro */
+    border-radius: 50px; /* Opcional, para bordes redondeados */
+    background: rgb(254, 238, 230); /* Fondo para mejor visualización */
+  }
+  
+  footer {
+    background-color: #024873;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+  }
+
+  footer .box .social-net a {
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #000000;
+    margin-right: 10px;
+    text-align: center;
+  }
+  
+  .social-media img {
+    width: 30px;
+    margin: 0 10px;
+  }
+  
