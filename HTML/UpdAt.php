@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,30 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="../CSS/insAt.css" rel="stylesheet">
-
-    
-    <script>
-        function getDetails(userId) {
-            if (userId) {
-                fetch(`../PHP/getDetalles.php?userId=${userId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('userId').value = data.userId;
-                        document.getElementById('name_user').value = data.name_user;
-                        document.getElementById('apellidoPat').value = data.apellidoPat;
-                        document.getElementById('apellidoMar').value = data.apellidoMar;
-                        document.getElementById('tipoSangre').value = data.tipoSangre;
-                        document.getElementById('lateralidad').value = data.lateralidad;
-                        document.getElementById('enfermedades').value = data.enfermedades;
-                        document.getElementById('sexo').value = data.sexo;
-                        document.getElementById('edad').value = data.edad;
-                        document.getElementById('peso').value = data.peso;
-                        document.getElementById('altura').value = data.altura;
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="container mt-3">
@@ -42,7 +17,7 @@
         <form action="../PHP/modif.php" method="POST">
             <div class="mb-3">
                 <label for="deportistas" class="form-label">Seleccionar Deportista:</label>
-                <select id="deportista" name="userId" onchange="getDetails(this.value)">
+                <select id="deportista" name="userId">
                  
                  <?php include '../PHP/filtrar.php'; ?>
                   
