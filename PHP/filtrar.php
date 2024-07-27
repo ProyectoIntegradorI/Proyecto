@@ -18,8 +18,8 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Generar opciones del combobox
-    while($row = $result->fetch_assoc()) {
-        echo "<option value='"  . $row["name_user"] . "</option>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='" . htmlspecialchars($row["userId"]) . "'>" . htmlspecialchars($row["name_user"]) . "</option>";
     }
 } else {
     echo "<option value=''>No hay datos disponibles</option>";
