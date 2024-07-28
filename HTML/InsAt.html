@@ -3,60 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Atleta</title>
+    <title>Agregar y Borrar Atleta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="../CSS/insAt.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../PHP/listDep.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const select = document.getElementById('deleteUserId');
+                        data.data.forEach(atleta => {
+                            const option = document.createElement('option');
+                            option.value = atleta.userId;
+                            option.text = atleta.fullName;
+                            select.appendChild(option);
+                        });
+                    } else {
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function handleResponse(response) {
+            const resultDiv = document.getElementById('result');
+            if (response.status === 'success') {
+                resultDiv.innerHTML = `<div class="alert alert-success" role="alert">${response.message}</div>`;
+            } else {
+                resultDiv.innerHTML = `<div class="alert alert-danger" role="alert">${response.message}</div>`;
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('../PHP/deleteDep.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => handleResponse(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-3">
+        <img src="../img/headerimage.png" alt="Encabezado" class="header-image">
         <h1 class="mt-3 mb-4">Agregar Nuevo Atleta</h1>
-        <form  action="../PHP/insertDep.php" method="POST">
-            <div class="mb-3">
-                <label for="userId" class="form-label">Cedula:</label>
-                <input type="text" class="form-control" id="userId" name="userId" required>
+        <!-- Formulario para agregar atleta -->
+        <form action="../PHP/insertDep.php" method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="userId" class="form-label">ID:</label>
+                    <input type="text" class="form-control" id="userId" name="userId" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="name_user" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="name_user" name="name_user" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="apellidoPat" class="form-label">Apellido Paterno:</label>
+                    <input type="text" class="form-control" id="apellidoPat" name="apellidoPat" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="apellidoMar" class="form-label">Apellido Materno:</label>
+                    <input type="text" class="form-control" id="apellidoMar" name="apellidoMar" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="tipoSangre" class="form-label">Tipo Sangre:</label>
+                    <input type="text" class="form-control" id="tipoSangre" name="tipoSangre" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lateralidad" class="form-label">Lateralidad:</label>
+                    <select class="form-control" id="lateralidad" name="lateralidad" required>
+                        <option value="">Seleccionar</option>
+                        <option value="izquierda">Izquierda</option>
+                        <option value="derecha">Derecha</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="enfermedades" class="form-label">Enfermedades:</label>
+                    <input type="text" class="form-control" id="enfermedades" name="enfermedades" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="sexo" class="form-label">Sexo:</label>
+                    <select class="form-control" id="sexo" name="sexo" required>
+                        <option value="">Seleccionar</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                        <option value="O">Otro</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="edad" class="form-label">Edad:</label>
+                    <input type="text" class="form-control" id="edad" name="edad" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="peso" class="form-label">Peso:</label>
+                    <input type="text" class="form-control" id="peso" name="peso" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="altura" class="form-label">Altura:</label>
+                    <input type="text" class="form-control" id="altura" name="altura" required>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="name_user" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" id="name_user" name="name_user" required>
-            </div>
-            <div class="mb-3">
-                <label for="apellidoPat" class="form-label">Apellido Paterno:</label>
-                <input type="text" class="form-control" id="apellidoPat" name="apellidoPat" required>
-            </div>
-            <div class="mb-3">
-                <label for="apellidoMar" class="form-label">Apellido Materno:</label>
-                <input type="text" class="form-control" id="apellidoMar" name="apellidoMar" required>
-            </div>
-            <div class="mb-3">
-                <label for="tipoSangre" class="form-label">TipoSangre:</label>
-                <input type="text" class="form-control" id="tipoSangre" name="tipoSangre" required>
-            </div>
-            <div class="mb-3">
-                <label for="lateralidad" class="form-label">Lateralidad:</label>
-                <input type="text" class="form-control" id="lateralidad" name="lateralidad" required>
-            </div>
-            <div class="mb-3">
-                <label for="enfermedades" class="form-label">Enfermedades:</label>
-                <input type="text" class="form-control" id="enfermedades" name="enfermedades" required>
-            </div>
-            <div class="mb-3">
-                <label for="sexo" class="form-label">Sexo:</label>
-                <input type="text" class="form-control" id="sexo" name="sexo" required>
-            </div>
-            <div class="mb-3">
-                <label for="edad" class="form-label">Edad:</label>
-                <input type="text" class="form-control" id="edad" name="edad" required>
-            </div>
-            <div class="mb-3">
-                <label for="peso" class="form-label">Peso:</label>
-                <input type="text" class="form-control" id="peso" name="peso" required>
-            </div>
-            <div class="mb-3">
-                <label for="altura" class="form-label">Altura:</label>
-                <input type="text" class="form-control" id="altura" name="altura" required>
-            </div>
-
             <button type="submit" class="btn btn-primary">Agregar Atleta</button>
+            <a href="UpdAt.html" class="btn btn-secondary">Actualizar</a>
         </form>
+        
+        <h2 class="mt-5">Borrar Atleta</h2>
+    
+        <form id="deleteForm" onsubmit="submitForm(event)">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="deleteUserId" class="form-label">Selecciona el Atleta a Borrar:</label>
+                    <select class="form-control" id="deleteUserId" name="deleteUserId" required>
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">Borrar Atleta</button>
+        </form>
+        <div id="result" class="mt-3"></div>
     </div>
 </body>
 </html>
+              
